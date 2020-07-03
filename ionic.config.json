@@ -1,5 +1,7 @@
 {
   "name": "CIICManager",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
