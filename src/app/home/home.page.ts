@@ -4,7 +4,7 @@ import { ToastController } from '@ionic/angular';
 //import { PostProvider } from '../../providers/post-provider';
 import { MySQLServiceService } from './../services/my-sqlservice.service';
 //import { SQLiteServiceService, Dev } from './../services/sqlite-service.service';
-import { Storage } from '@ionic/Storage';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-home',
