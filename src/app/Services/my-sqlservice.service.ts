@@ -8,33 +8,10 @@ import { HttpClient, HttpHeaders, HttpParams, HttpHandler } from '@angular/commo
 //import { Headers, RequestOptions } from '@ionic-native/http/ngx';
 //import 'rxjs/add/operator/map';
 
- 
 @Injectable({
   providedIn: 'root'
 })
 export class MySQLServiceService {
-  server: string = "http://localhost:81/server_api/";
-  //server: string = "http://localhost/IONIC4_CRUD_LOGINREGIS_PHP_MYSQL/server_api/";  default
-  // if you test in real device "http://localhost" change use the your IP	
-  // server: string = "http://192.199.122.100/IONIC4_CRUD_LOGINREGIS_PHP_MYSQL/server_api/"; 
 
-  constructor(public httpClient: HttpClient) {
-
-  }
-
-  postData(body, file) {
-    const options = {
-      headers: new HttpHeaders().append('key', 'value'),
-      params: new HttpParams().append('key', 'value')
-    }
-    return this.httpClient.post(this.server + file, JSON.stringify(body), options);
-  }
-  // postData(body, file){
-  // 	let type = "application/json; charset=UTF-8";
-  // 	let headers = new Headers({ 'Content-Type': type });
-  // 	let options = new RequestOptions({ headers: headers });
-
-  // 	return this.http.post(this.server + file, JSON.stringify(body), options)
-  // 	.map(res => res.json());
-  // }
+  constructor() { }
 }

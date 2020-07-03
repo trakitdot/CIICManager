@@ -20,18 +20,11 @@
     "@angular/platform-browser-dynamic": "~9.1.6",
     "@angular/router": "~9.1.6",
     "@ionic-native/core": "^5.0.7",
-    "@ionic-native/http": "^5.27.0",
     "@ionic-native/splash-screen": "^5.0.0",
-    "@ionic-native/sqlite": "^5.27.0",
-    "@ionic-native/sqlite-porter": "^5.27.0",
     "@ionic-native/status-bar": "^5.0.0",
     "@ionic/angular": "^5.0.0",
-    "@ionic/storage": "^2.2.0",
-    "cordova-plugin-advanced-http": "^2.5.1",
-    "cordova-sqlite-storage": "^5.0.0",
     "rxjs": "~6.5.1",
     "tslib": "^1.10.0",
-    "uk.co.workingedge.cordova.plugin.sqliteporter": "^1.1.1",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
@@ -57,12 +50,5 @@
     "tslint": "~6.1.0",
     "typescript": "~3.8.3"
   },
-  "description": "An Ionic project",
-  "cordova": {
-    "plugins": {
-      "cordova-sqlite-storage": {},
-      "uk.co.workingedge.cordova.plugin.sqliteporter": {},
-      "cordova-plugin-advanced-http": {}
-    }
-  }
+  "description": "An Ionic project"
 }

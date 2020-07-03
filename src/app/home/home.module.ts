@@ -10,13 +10,6 @@ import { NavbarComponent } from '../Components/navbar/navbar.component';
 import { MainbarComponent } from '../Components/mainbar/mainbar.component';
 import { SidebarComponent } from '../Components/sidebar/sidebar.component';
 
-import { Router } from '@angular/router';
-//import { Component, OnInit } from '@angular/core';
-import { ToastController } from '@ionic/angular';
-//import { PostProvider } from '../../providers/post-provider';
-import { MySQLServiceService } from './../services/my-sqlservice.service';
-import { SQLiteServiceService, Dev } from './../services/sqlite-service.service';
-import { Storage } from '@ionic/Storage';
 
 @NgModule({
   imports: [
@@ -33,6 +26,3 @@ import { Storage } from '@ionic/Storage';
   
 })
 export class HomePageModule {}
-
-
-
