@@ -6,8 +6,8 @@ import { MySQLServiceService } from '../Services/my-sqlservice.service';
 //import { SQLiteServiceService, Dev } from './../services/sqlite-service.service';
 import { Storage } from '@ionic/storage';
 import { AuthenticationService } from '../Services/auth/authentication.service';
-
-
+//validations
+import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-welcome',
   templateUrl: './welcome.page.html',
@@ -23,6 +23,8 @@ export class WelcomePage implements OnInit {
   rusername: string = "";
   rpassword: string = "";
   cpassword: string = "";
+
+  loginFormValidator: FormGroup;
   
   slideOpts = {
     initialSlide: 1,
@@ -33,11 +35,27 @@ export class WelcomePage implements OnInit {
     private authencticationService: AuthenticationService,
     private MySQLService: MySQLServiceService,
     private storage: Storage,
-    public toastCtrl: ToastController
+    public toastCtrl: ToastController,
+    public fb: FormBuilder
   ) { }
 
   ngOnInit() {
+    this.loginFormValidator = this.fb.group(
+      {
+        usernameLogin: new FormControl('', Validators.required),
+        passwordLogin: new FormControl('', Validators.compose([Validators.minLength(5), Validators.maxLength(10), Validators.required])),
+      }
+    )
   }
+
+  
+  public get Username() {
+    return this.loginFormValidator.get('usernameLogin')
+  }
+  public get Password() {
+    return this.loginFormValidator.get('passwordLogin')
+  }
+  
 
   swipeNext(){
     this.slides.slideNext();
