@@ -1,0 +1,58 @@
+.navbar {
+    //top: 0;
+    position: relative;
+    .container-fluid {
+      background: #fff;
+      border-color: transparent;
+      padding: 4px;
+        text-decoration: none; display: inline; text-align: left;
+    }
+    .navbar-nav li{padding: 4px;
+        text-decoration: none; display: inline; text-align: left;
+      } 
+    .pull-left ul li{padding: 4px;
+        text-decoration: none; display: inline; text-align: left;
+      } 
+  
+    .pull-right ul li{padding: 4px;
+        text-decoration: none; display: inline; text-align: right;
+    }
+  
+    .navbar-absolute  {position: absolute;
+    }
+    .fixed-top  {top:0;
+    }
+  
+    b {
+      font-weight: 500;
+    }
+  
+    p {
+      padding: 0 40px;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #60646B;
+  
+      b {
+        color: #000000;
+      }
+    }
+    .hero-image {
+        //background-image: url(../../assets/farmer.jpg);
+        background-color: transparent;
+        height: 900px; width: 99.9999%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;padding: 10px;
+      }
+      
+      .hero-text {background-color:rgb(0,0,0);background-color:rgba(0,0,0,0.4);
+        text-align: center;padding: 10px;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+      }
+ }

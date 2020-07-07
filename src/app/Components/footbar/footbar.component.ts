@@ -6,9 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./footbar.component.scss'],
 })
 export class FootbarComponent implements OnInit {
-
+  cpdate: any = "2020";
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
 }

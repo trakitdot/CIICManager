@@ -13,10 +13,12 @@ import { HTTP } from '@ionic-native/http/ngx';
 
 import { IonicStorageModule } from '@ionic/storage';
 
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,HttpClientModule,IonicStorageModule.forRoot()/*,IonicStorageModule.forRoot({
+  imports: [FormsModule,BrowserModule, IonicModule.forRoot(), AppRoutingModule,HttpClientModule,IonicStorageModule.forRoot()/*,IonicStorageModule.forRoot({
     name: '__mydb',
 driverOrder: ['indexeddb', 'sqlite', 'websql', 'localstorage']
   })*/],

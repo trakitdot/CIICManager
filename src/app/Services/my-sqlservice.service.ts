@@ -24,8 +24,8 @@ export class MySQLServiceService {
 
   postData(body, file) {
     const options = {
-      headers: new HttpHeaders().append('key', 'value'),
-      params: new HttpParams().append('key', 'value')
+      headers: new HttpHeaders(),//.append('aksi', 'login'),
+      params: new HttpParams()//.append('aksi', 'login')
     }
     return this.httpClient.post(this.server + file, JSON.stringify(body), options);
   }
@@ -33,7 +33,10 @@ export class MySQLServiceService {
   // 	let type = "application/json; charset=UTF-8";
   // 	let headers = new Headers({ 'Content-Type': type });
   // 	let options = new RequestOptions({ headers: headers });
-
+/*      let body = {
+        username: this.username,
+        password: this.password,
+        aksi: 'login'*/
   // 	return this.http.post(this.server + file, JSON.stringify(body), options)
   // 	.map(res => res.json());
   // }
