@@ -5,6 +5,7 @@ import { ToastController } from '@ionic/angular';
 import { MySQLServiceService } from './../services/my-sqlservice.service';
 //import { SQLiteServiceService, Dev } from './../services/sqlite-service.service';
 import { Storage } from '@ionic/storage';
+import { AuthenticationService } from '../Services/auth/Authentication.service';
 
 @Component({
   selector: 'app-home',
@@ -24,11 +25,16 @@ export class HomePage {
     private router: Router,
     private MySQLService: MySQLServiceService,
     private storage: Storage,
-    public toastCtrl: ToastController
+    public toastCtrl: ToastController,
+    private authenticationService: AuthenticationService
   ) { }
 
   testFunc() {
     this.test = "Home works";
+  }
+
+  logout() {
+    this.authenticationService.logout();
   }
 
   
