@@ -14,7 +14,7 @@ import { HTTP } from '@ionic-native/http/ngx';
 import { IonicStorageModule } from '@ionic/storage';
 
 import { FormsModule } from '@angular/forms';
-import { AuthenticationService } from './Services/auth/Authentication.service';
+import { AuthenticationService } from './Services/auth/authentication.service';
 import { AuthGuardService } from './Services/auth/auth-guard.service';
 
 
