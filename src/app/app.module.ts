@@ -12,6 +12,7 @@ import { HttpClient, HttpHeaders, HttpParams, HttpHandler, HttpClientModule } fr
 import { HTTP } from '@ionic-native/http/ngx';
 
 import { IonicStorageModule } from '@ionic/storage';
+import { SQLite } from '@ionic-native/sqlite/ngx'
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,6 +24,7 @@ driverOrder: ['indexeddb', 'sqlite', 'websql', 'localstorage']
   providers: [HTTP,
     StatusBar,
     SplashScreen,
+    SQLite,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

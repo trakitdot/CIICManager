@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 //import { PostProvider } from '../../providers/post-provider';
 import { MySQLServiceService } from './../services/my-sqlservice.service';
-//import { SQLiteServiceService, Dev } from './../services/sqlite-service.service';
+import { SQLiteServiceService } from './../services/sqlite-service.service';
 import { Storage } from '@ionic/storage';
 
 @Component({
@@ -24,7 +24,8 @@ export class HomePage {
     private router: Router,
     private MySQLService: MySQLServiceService,
     private storage: Storage,
-    public toastCtrl: ToastController
+    public toastCtrl: ToastController,
+    private sqlService : SQLiteServiceService
   ) { }
 
   testFunc() {
@@ -156,4 +157,45 @@ export class HomePage {
       image: "assets/admin.jpg",
     }
   ];*/
+
+  registerUser() {
+    return this.sqlService.registerUser('Willington', 'Wylie', '@Weyting').then( res => {
+      alert(`res: ${JSON.stringify(res)}`)
+      alert(`res.res: ${JSON.stringify(res.res)}`)
+      alert(`res['res']: ${JSON.stringify(res['res'])}`)
+      alert(`row: ${JSON.stringify(res.res.rows.item(0))}`)
+      alert(`data: ${res.res.rows.item(0).name}, ${res.res.rows.item(0).surname}, ${res.res.rows.item(0).password}`)
+    })
+  }
+  deleteUser() {
+    return this.sqlService.deleteUser(1).then( res => {
+      alert(`res: ${JSON.stringify(res)}`)
+      alert(`data: ${res.res.rows.item(0).name}, ${res.res.rows.item(0).surname}, ${res.res.rows.item(0).password}`)
+    })
+  }
+  updateUser() {
+    return this.sqlService.updateUser('Vukona', 'Uxe', '@Weiting', 1).then( res => {
+      alert(`res: ${JSON.stringify(res)}`)
+      alert(`data: ${res.res.rows.item(0).name}, ${res.res.rows.item(0).surname}, ${res.res.rows.item(0).password}`)
+    })
+  }
+  retrieveUser() {
+    return this.sqlService.retrieveUser(1).then( res => {
+      alert(`res: ${JSON.stringify(res)}`)
+      alert(`res: ${JSON.stringify(res.res.rows.item(0).name)}, ${res.res.rows.item(0).surname}, ${res.res.rows.item(0).password}`)
+    })
+  }
+  createTable() {
+    return this.sqlService.createUserTable().then( res => {
+      alert(`res: ${JSON.stringify(res)}`)
+    })
+  }
+  createDatabase() {
+    return this.sqlService.createDatabase().then( res => {
+      alert(`res: ${JSON.stringify(res)}`)
+    })
+  }
+  // read() {
+  //   return this.sqlService.getUser(1).then()
+  // }
 }
