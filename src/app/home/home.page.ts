@@ -88,7 +88,7 @@ export class HomePage {
   async checkUser() {
     await this.storage.get('session_storage_local').then( res => {
       this.user = res.username
-      alert(JSON.stringify(res))
+      //alert(JSON.stringify(res))
     })
   }
   // registerUser() {

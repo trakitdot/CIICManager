@@ -25,7 +25,7 @@ export class SQLiteServiceService {
   }
   createDatabase() {
     return this.sqlite.create( this.setDatabaseOptions() ).then( (db : SQLiteObject) => {
-      alert('table succesfully created')
+      //alert('table succesfully created')
       this.db = db
     }).catch( e => alert(`error: ${JSON.stringify(e)}`))
   }
@@ -37,9 +37,9 @@ export class SQLiteServiceService {
   registerUser(user) {
     return this.createUserTable().then(tableRes => {
       if(tableRes.success) {
-        alert(`tableRes: ${tableRes}`)
+        //alert(`tableRes: ${tableRes}`)
         return this.saveUser(user).then(userRes => {
-          alert(`userRes: ${userRes}`)
+          //alert(`userRes: ${userRes}`)
           return userRes
         })
       } else {
@@ -73,11 +73,11 @@ export class SQLiteServiceService {
   loginUser(user) {
     let { username, password } = user
     return this.isValidUser(username).then( ( userRes: any ) => {
-      alert(`username results: ${JSON.stringify(userRes)}`)
+      //alert(`username results: ${JSON.stringify(userRes)}`)
       try {
-        alert(`username res length: ${JSON.stringify(userRes.res.rows.length )}`)
+        //alert(`username res length: ${JSON.stringify(userRes.res.rows.length )}`)
       } catch (error) {
-        alert(`username res length: ${JSON.stringify(userRes.res.length)}`)
+        //alert(`username res length: ${JSON.stringify(userRes.res.length)}`)
       }
       
       if(userRes.res.rows.length > 0) {
@@ -85,12 +85,12 @@ export class SQLiteServiceService {
           if(userCred.res.rows.length > 0) {
             let cred : object = { username: username, name: userCred.res.rows.item(0).name }
             let info : object = { isValid: true, userCred: cred }
-            alert(`info with usercredentials: ${JSON.stringify(info)}`)
+           // alert(`info with usercredentials: ${JSON.stringify(info)}`)
             return info
           } else {
             let cred : object = { username: username, name: undefined }
             let info : object = { isValid: false, userCred: cred }
-            alert(`info without usercredentials: ${JSON.stringify(info)}`)
+           // alert(`info without usercredentials: ${JSON.stringify(info)}`)
             return info
           }
         })
@@ -119,12 +119,12 @@ export class SQLiteServiceService {
   runSQL(sql, sqlParams, successMsg, errMsg){
     return this.db.executeSql(sql, sqlParams)
       .then( res => {
-        alert(`runSQL: ${JSON.stringify(res)}`)
+       // alert(`runSQL: ${JSON.stringify(res)}`)
         let result = { res: res, msg: successMsg, code: 1, success: true }
         return result
       })
       .catch( e => {
-        alert(`runSQL err: ${JSON.stringify(e)}`)
+        // alert(`runSQL err: ${JSON.stringify(e)}`)
         let result = { res: e, msg: `Error while attempting to ${errMsg}, please try again`, code: 0, success: false }
         return result
       })
