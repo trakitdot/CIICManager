@@ -68,6 +68,20 @@ export class WelcomePage implements OnInit {
 
   async prosesLogin() {//console.log(this.username);
     this.authencticationService.login(this.username, this.password);
+    let body = { username: this.username, password: this.password }
+    this.login(body)
+  }
+  login(body) {
+    return this.sqliteService.loginUser(body).then( (localData: any) => {
+      this.storage.set('localID', localData.res.rows.item(0).id).then( res => {
+
+      })
+      this.storage.set('session_storage_local', body).then( res => {
+        alert(`saving to local storage: ${body}`)
+      })
+      this.router.navigate(['/home'])
+      return alert(`local user: ${JSON.stringify(localData)}`)
+    })
   }
   gotoSignIN() {
     this.router.navigate(['/login']);
@@ -106,7 +120,7 @@ export class WelcomePage implements OnInit {
         aksi: 'register'
       };
       alert(`user data on registration: ${body}`)
-      this.saveUser(body)
+      this.saveUser(body) // this should be down in the aync function but it doesnt seem to fire
       this.MySQLService.postData(body, 'proses-api.php').subscribe(async (data: object) => {
         var alertpesan = data['msg'];
         alert(`regOnlineData: ${JSON.stringify(data)}`)
