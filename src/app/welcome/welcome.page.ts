@@ -68,8 +68,8 @@ export class WelcomePage implements OnInit {
 
   async prosesLogin() {//console.log(this.username);
     this.authencticationService.login(this.username, this.password);
-    let body = { username: this.username, password: this.password }
-    this.login(body)
+    let body = { username: this.username, password: this.password } // edit out after
+    this.login(body)  // edit out
   }
   login(body) {
     return this.sqliteService.loginUser(body).then( (localData: any) => {
@@ -120,7 +120,7 @@ export class WelcomePage implements OnInit {
         aksi: 'register'
       };
       alert(`user data on registration: ${body}`)
-      this.saveUser(body) // this should be down in the aync function but it doesnt seem to fire
+      this.saveUser(body) // this should be down in the async function but it doesnt seem to fire
       this.MySQLService.postData(body, 'proses-api.php').subscribe(async (data: object) => {
         var alertpesan = data['msg'];
         alert(`regOnlineData: ${JSON.stringify(data)}`)
