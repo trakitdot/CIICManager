@@ -1,3 +1,22 @@
 <div class="hero-image" [innerHTML]="createDiv()">
-  
+ 
 </div>
+<div class="inputs">
+  <h1>WELCOME BACK, {{user.username}} {{user}}</h1>
+
+  <ion-item style="margin-top: 3% !important; background-color: transparent;">
+    <ion-label position="floating" style="background-color: transparent;">Username</ion-label>
+    <ion-input type="text" [(ngModel)]="username" style="background-color: transparent;"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Password</ion-label>
+    <ion-input type="password" [(ngModel)]="password"></ion-input>
+  </ion-item>
+  <P id="forgot" (click)="forgotPassword()">Forgot Password?</P>
+  <div>
+    <ion-button expand="block" padding color="tertiary" (click)="prosesLogin()">Sign In</ion-button>
+    <ion-button expand="block" padding color="tertiary" fill="outline" (click)="formRegister()">Register
+    </ion-button><br>
+  </div>
+</div> 

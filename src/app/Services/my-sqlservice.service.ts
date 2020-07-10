@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 //import { HTTP } from '@ionic-native/http/ngx';
 //import { HttpClientModule } from  '@angular/common/http';
 //import { HttpClient, Http, Headers, RequestOptions } from '@angular/common/http';
-import { HTTP } from '@ionic-native/http/ngx';
-import { HttpClient, HttpHeaders, HttpParams, HttpHandler } from '@angular/common/http';
+// import { HTTP } from '@ionic-native/http/ngx';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 //import { Headers, RequestOptions } from '@ionic-native/http/ngx';
 //import 'rxjs/add/operator/map';
 
@@ -13,10 +13,10 @@ import { HttpClient, HttpHeaders, HttpParams, HttpHandler } from '@angular/commo
   providedIn: 'root'
 })
 export class MySQLServiceService {
-  server: string = "http://localhost:81/server_api/";
+  // server: string = "http://localhost/server_api/";
   //server: string = "http://localhost/IONIC4_CRUD_LOGINREGIS_PHP_MYSQL/server_api/";  default
   // if you test in real device "http://localhost" change use the your IP	
-  // server: string = "http://192.199.122.100/IONIC4_CRUD_LOGINREGIS_PHP_MYSQL/server_api/"; 
+  server: string = "http://192.199.122.100/IONIC4_CRUD_LOGINREGIS_PHP_MYSQL/server_api/"; 
 
   constructor(public httpClient: HttpClient) {
 
@@ -24,8 +24,8 @@ export class MySQLServiceService {
 
   postData(body, file) {
     const options = {
-      headers: new HttpHeaders().append('key', 'value'),
-      params: new HttpParams().append('key', 'value')
+      headers: new HttpHeaders(),//.append('aksi', 'login'),
+      params: new HttpParams()//.append('aksi', 'login')
     }
     return this.httpClient.post(this.server + file, JSON.stringify(body), options);
   }
@@ -33,7 +33,10 @@ export class MySQLServiceService {
   // 	let type = "application/json; charset=UTF-8";
   // 	let headers = new Headers({ 'Content-Type': type });
   // 	let options = new RequestOptions({ headers: headers });
-
+/*      let body = {
+        username: this.username,
+        password: this.password,
+        aksi: 'login'*/
   // 	return this.http.post(this.server + file, JSON.stringify(body), options)
   // 	.map(res => res.json());
   // }

@@ -1,10 +1,11 @@
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 //import { PostProvider } from '../../providers/post-provider';
-import { MySQLServiceService } from './../services/my-sqlservice.service';
-import { SQLiteServiceService } from './../services/sqlite-service.service';
+import { MySQLServiceService } from './../Services/my-sqlservice.service';
+import { SQLiteServiceService } from './../Services/sqlite-service.service';
 import { Storage } from '@ionic/storage';
+import { AuthenticationService } from '../Services/auth/authentication.service';
 
 @Component({
   selector: 'app-home',
@@ -25,94 +26,18 @@ export class HomePage {
     private MySQLService: MySQLServiceService,
     private storage: Storage,
     public toastCtrl: ToastController,
-    private sqlService : SQLiteServiceService
+    private sqlService : SQLiteServiceService,
+    private authenticationService: AuthenticationService,
   ) { }
 
   testFunc() {
     this.test = "Home works";
   }
 
-  async prosesLogin() {
-    if (this.username != "" && this.username != "") {
-      let body = {
-        username: this.username,
-        password: this.password,
-        aksi: 'login'
-      };
-
-      this.MySQLService.postData(body, 'proses-api.php').subscribe(async (data: object) => {
-        var alertpesan = data['msg'];
-        if (data['success']) {
-          let member: object = {}
-          this.storage.set('session_storage', data['result']).then(res => {//console.log(res);
-            this.storage.get('session_storage').then((res: object) => {
-              //console.log(res);
-              member = res
-              //console.log(member);
-              let id = member['user_id']
-              //console.log(id);              
-            })
-          }).catch(e => {
-            alertpesan = e;//console.log(e);
-          });
-          //console.log(member);
-          if (alertpesan == null) this.router.navigate(['/customer']);
-          const toast = await this.toastCtrl.create({
-            message: alertpesan == null ? 'Login Succesfully.' : alertpesan,//member['user_id'],//data.result.user_id,
-            duration: 2000
-          });
-          toast.present();
-          this.username = "";
-          this.password = "";
-          //console.log(data);
-        } else {
-          const toast = await this.toastCtrl.create({
-            message: alertpesan,
-            duration: 2000
-          });
-          toast.present();
-        }
-      });
-
-    } else {
-      const toast = await this.toastCtrl.create({
-        message: 'Username or Password Invalid.',
-        duration: 2000
-      });
-      toast.present();
-    }
+  logout() {
+    this.authenticationService.logout();
   }
-  gotoSignIN() {
-    this.router.navigate(['/login']);
-  }
-  gotoSignUP() {
-    this.router.navigate(['/register']);
-  }
-  forgotPassword() {
-    this.router.navigate(['/home']);
-  }
-  async prosesRegister() {
-    // validation done
-    if (this.rusername == "") {
-      const toast = await this.toastCtrl.create({
-        message: 'Username is required',
-        duration: 3000
-      });
-      toast.present();
-    } else if (this.rpassword == "") {
-      const toast = await this.toastCtrl.create({
-        message: 'Password is required',
-        duration: 3000
-      });
-      toast.present();
-    } else if (this.rpassword != this.cpassword) {
-      const toast = await this.toastCtrl.create({
-        message: 'Invalid password',
-        duration: 3000
-      });
-      toast.present();
-    } else {
-
+  register() {
       let body = {
         username: this.rusername,
         password: this.rpassword,
@@ -139,7 +64,7 @@ export class HomePage {
 
     }
 
-  }
+  
   /*slides = [
     {
       title: "Welcome to the Docs!",
@@ -159,7 +84,8 @@ export class HomePage {
   ];*/
 
   registerUser() {
-    return this.sqlService.registerUser('Willington', 'Wylie', '@Weyting').then( res => {
+    let body = {name: 'Willington', username: 'Wylie', password: '@Weyting'}
+    return this.sqlService.registerUser(body).then( (res : any) => {
       alert(`res: ${JSON.stringify(res)}`)
       alert(`res.res: ${JSON.stringify(res.res)}`)
       alert(`res['res']: ${JSON.stringify(res['res'])}`)

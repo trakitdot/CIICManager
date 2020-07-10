@@ -10,7 +10,11 @@
   ],
   "include": [
     "src/**/*.ts",
-    "src/**/*.d.ts"
+    "src/**/*.d.ts",
+    "src/app/Services/auth/authentication.service.ts",
+   // "src/app/Services/auth/Authentication.service.ts",
+    "src/app/Services/my-sqlservice.service.ts",
+    "src/app/Services/sqlite-service.service.ts"
   ],
   "exclude": [
     "src/**/*.spec.ts"
