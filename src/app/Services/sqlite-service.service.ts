@@ -72,15 +72,15 @@ export class SQLiteServiceService {
   }
   loginUser(user) {
     let { username, password } = user
-    return this.isValidUser(username).then( ( user: any ) => {
-      alert(`username results: ${JSON.stringify(user)}`)
+    return this.isValidUser(username).then( ( userRes: any ) => {
+      alert(`username results: ${JSON.stringify(userRes)}`)
       try {
-        alert(`username res length: ${JSON.stringify(user.res.rows.length )}`)
+        alert(`username res length: ${JSON.stringify(userRes.res.rows.length )}`)
       } catch (error) {
-        alert(`username res length: ${JSON.stringify(user.res.length)}`)
+        alert(`username res length: ${JSON.stringify(userRes.res.length)}`)
       }
       
-      if(user.res.rows.length > 0) {
+      if(userRes.res.rows.length > 0) {
         return this.isCorrectPass(user).then( ( userCred: any ) => {
           if(userCred.res.rows.length > 0) {
             let cred : object = { username: username, name: userCred.res.rows.item(0).name }
