@@ -5,7 +5,7 @@ import { ToastController } from '@ionic/angular';
 import { MySQLServiceService } from './../Services/my-sqlservice.service';
 //import { SQLiteServiceService, Dev } from './../services/sqlite-service.service';
 import { Storage } from '@ionic/storage';
-import { AuthenticationService } from '../Services/auth/Authentication.service';
+//import { AuthenticationService } from '../Services/auth/Authentication.service';
 
 @Component({
   selector: 'app-home',
@@ -26,7 +26,7 @@ export class HomePage {
     private MySQLService: MySQLServiceService,
     private storage: Storage,
     public toastCtrl: ToastController,
-    private authenticationService: AuthenticationService
+    //private authenticationService: AuthenticationService
   ) { }
 
   testFunc() {
@@ -34,7 +34,9 @@ export class HomePage {
   }
 
   logout() {
-    this.authenticationService.logout();
+    //this.authenticationService.logout();
+    console.log('Logged Out');
+    
   }
 
   

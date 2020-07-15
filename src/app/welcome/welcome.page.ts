@@ -1,13 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastController, IonSlides } from '@ionic/angular';
-//import { PostProvider } from '../../providers/post-provider';
 import { MySQLServiceService } from '../Services/my-sqlservice.service';
-//import { SQLiteServiceService, Dev } from './../services/sqlite-service.service';
 import { Storage } from '@ionic/storage';
-import { AuthenticationService } from '../Services/auth/authentication.service';
-//validations
+
 import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
+import { AuthenticationService } from '../Services/Auth/authentication.service';
 @Component({
   selector: 'app-welcome',
   templateUrl: './welcome.page.html',
@@ -65,8 +63,9 @@ export class WelcomePage implements OnInit {
     this.slides.slidePrev();
   }
 
-  async prosesLogin() {//console.log(this.username);
-    this.authencticationService.login(this.username, this.password);
+  async prosesLogin() {
+    console.log(this.Username.value);
+  this.authencticationService.login(this.Username.value,  this.Password.value);
   }
   gotoSignIN() {
     this.router.navigate(['/login']);

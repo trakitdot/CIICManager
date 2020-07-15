@@ -1,37 +1,36 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Router } from '@angular/router';
 import { Platform, ToastController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { MySQLServiceService } from '../my-sqlservice.service';
-
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
-  
+
   authState = new BehaviorSubject(false);
   
+
   constructor(
     private router: Router,
     private storage: Storage,
     private platform: Platform,
-    public toastController: ToastController,
     private MySQLService: MySQLServiceService,
     public toastCtrl: ToastController
-  ) {
+    ) { 
     this.platform.ready().then(() => {
       this.ifLoggedIn();
     });
-   }
-   ifLoggedIn() {
-    this.storage.get('session_storage').then((res: object) => {
+  }
+  ifLoggedIn() {
+    this.storage.get('member').then((res: object) => {
       if (res) {
         this.authState.next(true);
       }             
     })
   }
- async login(username, password) {
+  async login(username, password) {
     if (username != "" && password != "") {
       let body = {
         username: username,
