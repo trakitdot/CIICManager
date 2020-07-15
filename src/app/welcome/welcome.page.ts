@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastController, IonSlides } from '@ionic/angular';
 import { MySQLServiceService } from '../Services/my-sqlservice.service';
+import { SQLiteServiceService } from './../Services/sqlite-service.service';
 import { Storage } from '@ionic/storage';
 
 import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
@@ -34,7 +35,8 @@ export class WelcomePage implements OnInit {
     private MySQLService: MySQLServiceService,
     private storage: Storage,
     public toastCtrl: ToastController,
-    public fb: FormBuilder
+    public fb: FormBuilder,
+    private sqliteService : SQLiteServiceService
   ) { }
 
   ngOnInit() {
@@ -63,9 +65,22 @@ export class WelcomePage implements OnInit {
     this.slides.slidePrev();
   }
 
-  async prosesLogin() {
-    console.log(this.Username.value);
-  this.authencticationService.login(this.Username.value,  this.Password.value);
+  async prosesLogin() {//console.log(this.username);
+    this.authencticationService.login(this.username, this.password);
+    let body = { username: this.username, password: this.password } // edit out after
+    this.login(body)  // edit out
+  }
+  login(body) {
+    return this.sqliteService.loginUser(body).then( (localData: any) => {
+      this.storage.set('localID', localData.res.rows.item(0).id).then( res => {
+
+      })
+      this.storage.set('session_storage_local', body).then( res => {
+        alert(`saving to local storage: ${body}`)
+      })
+      this.router.navigate(['/home'])
+      return alert(`local user: ${JSON.stringify(localData)}`)
+    })
   }
   gotoSignIN() {
     this.router.navigate(['/login']);
@@ -103,12 +118,15 @@ export class WelcomePage implements OnInit {
         password: this.rpassword,
         aksi: 'register'
       };
-
+      alert(`user data on registration: ${body}`)
+      this.saveUser(body) // this should be down in the async function but it doesnt seem to fire
       this.MySQLService.postData(body, 'proses-api.php').subscribe(async (data: object) => {
         var alertpesan = data['msg'];
+        alert(`regOnlineData: ${JSON.stringify(data)}`)
         if (data['success']) {
           console.log('created',data);
-
+          this.saveUser(body)
+          alert(`created: ${data}`)
           this.swipePrev();
           
           const toast = await this.toastCtrl.create({
@@ -126,6 +144,40 @@ export class WelcomePage implements OnInit {
       });
 
     }
+  }
+  saveUser(body) {
+    let {username, password} = body
+    alert(`user: ${username}, password: ${password}`)
+    return this.sqliteService.registerUser(body).then( (localReg : any) => {
+      alert(`localReg: ${JSON.stringify(localReg)}`)
+      if(localReg.success) {
+        return this.sqliteService.retrieveUser(localReg.res.insertId).then( localUser => {
+          if(localUser.success) {
+            try {
+              let user : string = localUser.res.rows.item(0).username
+              let pass : string = localUser.res.rows.item(0).password
+              alert(`username: ${user}, password: ${pass}`)
+            } catch (error) {
+              alert(JSON.stringify(error))
+            }
+            alert(`ID: ${localReg.res.insertId}`)
+            return this.storage.set('localID', localReg.res.insertId).then( res => {
+              alert(`localID res: ${JSON.stringify(res)}`)
+              return this.storage.get('localID').then(result => {
+                alert(`localID returns: ${JSON.stringify(result)}`)
+              })
+            })
+          } else {
+            alert(`localUser Err: ${localUser.msg}`)
+          }
+        })
+
+      } else {
+
+      }
+
+
+    })
   }
 
 }

@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HTTP } from '@ionic-native/http/ngx';
 
 import { IonicStorageModule } from '@ionic/storage';
+import { SQLite } from '@ionic-native/sqlite/ngx'
 
 import { FormsModule } from '@angular/forms';
 import { AuthenticationService } from './Services/Auth/authentication.service';
@@ -31,6 +32,7 @@ driverOrder: ['indexeddb', 'sqlite', 'websql', 'localstorage']
      AuthGuardService,
     StatusBar,
     SplashScreen,
+    SQLite,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

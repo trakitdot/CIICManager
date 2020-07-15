@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+//import { SQLiteServiceService } from 'src/app/Services/sqlite-service.service';
+import { Observable } from 'rxjs';
+import { SQLiteServiceService } from 'src/app/Services/sqlite-service.service';
 
 
 @Component({
@@ -8,10 +11,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainbarComponent implements OnInit {
   
-
-  constructor() {
-   
-    
+  user : Observable<object>
+  constructor(
+    private sqliteService: SQLiteServiceService,
+    private storage : Storage
+    ) {
+    this.getUser()
+  
    }
 
 
@@ -19,7 +25,12 @@ export class MainbarComponent implements OnInit {
   createDiv() {
     return "<div class='hero-text'><h1 style='font-size:50px'>Empowering Africans with Farming Solutions.</h1><h3>Some nice capturing text about us as a company / cooperative and how we will</h3></div>";
   }
-  
+  async getUser() {
+    await this.storage.get('session_storage_local').then( res => {
+      this.user = res
+      alert(JSON.stringify(res))
+    })
+  }
   /*slides = [
     {
       title: "Welcome to the Docs!",

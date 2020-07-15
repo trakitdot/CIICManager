@@ -13,10 +13,10 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
   providedIn: 'root'
 })
 export class MySQLServiceService {
-  server: string = "http://localhost/server_api/";
+  // server: string = "http://localhost/server_api/";
   //server: string = "http://localhost/IONIC4_CRUD_LOGINREGIS_PHP_MYSQL/server_api/";  default
   // if you test in real device "http://localhost" change use the your IP	
-  // server: string = "http://192.199.122.100/IONIC4_CRUD_LOGINREGIS_PHP_MYSQL/server_api/"; 
+  server: string = "http://192.199.122.100/IONIC4_CRUD_LOGINREGIS_PHP_MYSQL/server_api/"; 
 
   constructor(public httpClient: HttpClient) {
 
