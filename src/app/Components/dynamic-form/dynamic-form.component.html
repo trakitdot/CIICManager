@@ -1,0 +1,21 @@
+ <ion-card>
+        <ion-card-header>
+         <h5> Dynamic Form Header <small>(Placeholder)</small></h5>
+        </ion-card-header>
+        <ion-card-content>
+          <form (ngSubmit)="onSubmit()">
+
+            <ion-item *ngFor="let question of questions" class="form-row">
+              <app-question [question]="question" [form]="form"></app-question>
+            </ion-item>
+        
+            <div class="form-row ion-margin-vertical">
+              <ion-button shape="round" expand="block" color="success" type="submit" [disabled]="!form.valid">Save</ion-button>
+            </div>
+          </form>
+        
+          <div *ngIf="payLoad" class="form-row">
+            <strong>Saved the following values</strong><br>{{payLoad}}
+          </div>
+        </ion-card-content>
+ </ion-card>

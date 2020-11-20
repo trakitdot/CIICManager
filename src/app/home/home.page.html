@@ -1,23 +1,13 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      hello {{user}}
-      
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
 
+<app-navbar [name]="user"></app-navbar>
 <ion-content [fullscreen]="true">
-  <!-- <ion-header collapse="condense">
-    <ion-toolbar style="background: green;">
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header> -->
-<div class="container">
-  <ion-button (click)="logout()">Logout</ion-button>
-  <app-sidebar></app-sidebar>
-<app-navbar></app-navbar>
-<app-mainbar></app-mainbar>
-<app-footbar></app-footbar>
-</div>
+  <ion-grid>
+    <ion-row>
+      <ion-col size-xs="12" size-md="6" size-lg="4" size-xl="4">
+        <app-dynamic-form [questions]="questions$ | async"></app-dynamic-form>
+     </ion-col>
+     
+     </ion-row>
+     </ion-grid>
 </ion-content>
+<app-footbar></app-footbar>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 //import { SQLiteServiceService } from 'src/app/Services/sqlite-service.service';
 import { Observable } from 'rxjs';
 import { SQLiteServiceService } from 'src/app/Services/sqlite-service.service';
-
+import {Storage} from '@ionic/storage';
 
 @Component({
   selector: 'app-mainbar',

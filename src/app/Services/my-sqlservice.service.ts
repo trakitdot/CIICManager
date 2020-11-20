@@ -13,21 +13,22 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
   providedIn: 'root'
 })
 export class MySQLServiceService {
-  // server: string = "http://localhost/server_api/";
+   server: string = `http://localhost/server_api/proses-api.php`;
   //server: string = "http://localhost/IONIC4_CRUD_LOGINREGIS_PHP_MYSQL/server_api/";  default
   // if you test in real device "http://localhost" change use the your IP	
-  server: string = "http://192.199.122.100/IONIC4_CRUD_LOGINREGIS_PHP_MYSQL/server_api/"; 
+  //server: string = "http://192.199.122.100/IONIC4_CRUD_LOGINREGIS_PHP_MYSQL/server_api/"; 
 
   constructor(public httpClient: HttpClient) {
-
+    console.log(this.httpClient);
+    
   }
 
-  postData(body, file) {
+  postData(body) {
     const options = {
-      headers: new HttpHeaders(),//.append('aksi', 'login'),
-      params: new HttpParams()//.append('aksi', 'login')
+      headers: new HttpHeaders(),
+      params: new HttpParams()
     }
-    return this.httpClient.post(this.server + file, JSON.stringify(body), options);
+    return this.httpClient.post(this.server , JSON.stringify(body), options);
   }
   // postData(body, file){
   // 	let type = "application/json; charset=UTF-8";

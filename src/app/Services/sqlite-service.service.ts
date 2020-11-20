@@ -10,7 +10,7 @@ export class SQLiteServiceService {
   dbName : string = ''
   userTable : string = 'user'
   constructor(private sqlite : SQLite, private plt : Platform) {
-    this.checkState()
+    /* this.checkState() */
 
   }
   setDatabaseOptions() {
@@ -18,13 +18,11 @@ export class SQLiteServiceService {
   }
   checkState() {
     return this.plt.ready().then( rdy => {
-      return this.createDatabase().then( () => {
-        return rdy
-      })
+      return this.createDatabase();
     })
   }
   createDatabase() {
-    return this.sqlite.create( this.setDatabaseOptions() ).then( (db : SQLiteObject) => {
+    return this.sqlite.create(this.setDatabaseOptions()).then( (db : SQLiteObject) => {
       //alert('table succesfully created')
       this.db = db
     }).catch( e => alert(`error: ${JSON.stringify(e)}`))

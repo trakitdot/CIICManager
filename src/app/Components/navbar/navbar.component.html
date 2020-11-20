@@ -1,4 +1,4 @@
-<nav class="navbar navbar-absolute fixed-top">
+<!-- <nav class="navbar navbar-absolute fixed-top">
   <div class="container-fluid">
       <div class="navbar-wrapper">
         <a class="navbar-brand" href="javascript:void(0)">Page Title</a>
@@ -56,3 +56,26 @@
       </div>
   </div>
 </nav>
+ -->
+
+ <ion-header class="ion-no-border">
+     <ion-toolbar>
+        <ion-buttons slot="start">
+           <ion-menu-button></ion-menu-button>
+           </ion-buttons>
+      <ion-title>
+            Hello {{name}} 
+        </ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="logout()">
+                <ion-icon name="log-out-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button (click)="logout()">
+                <ion-icon slot="icon-only" name="ribbon-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+         
+     </ion-toolbar>
+ </ion-header>

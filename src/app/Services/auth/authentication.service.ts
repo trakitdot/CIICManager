@@ -4,8 +4,6 @@ import { Router } from '@angular/router';
 import { Platform, ToastController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { MySQLServiceService } from '../my-sqlservice.service';
-//import { SQLiteServiceService } from '../sqlite-service.service';
-import { promise } from 'protractor';
 import { SQLiteServiceService } from '../sqlite-service.service';
 
 @Injectable({
@@ -32,6 +30,8 @@ export class AuthenticationService {
     this.storage.get('member').then((res: object) => {
       if (res) {
         this.authState.next(true);
+        console.log('my power');
+        
       }             
     })
   }
@@ -43,14 +43,17 @@ export class AuthenticationService {
         aksi: 'login'
       };
      
-      this.MySQLService.postData(body, 'proses-api.php').subscribe(async (data: object) => {
+      this.MySQLService.postData(body).subscribe(async (data: object) => {
         //console.error(data);
         console.log(data);//console.warn(data);
         var alertpesan = data['msg'];
         if (data['success']) {
           let member: object = {}
-          await this.localLogin(body)
-          this.storage.set('session_storage', data['result']).then(res => {
+          if(this.platform.is('cordova')) {
+            await this.localLogin(body)
+          }
+         
+          this.storage.set('member', data['result']).then(res => {
             this.router.navigate(['home']);
             this.authState.next(true);
           }).catch(async e => {

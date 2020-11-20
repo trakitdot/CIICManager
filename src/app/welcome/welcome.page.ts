@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { ToastController, IonSlides } from '@ionic/angular';
+import { ToastController, IonSlides, Platform, MenuController } from '@ionic/angular';
 import { MySQLServiceService } from '../Services/my-sqlservice.service';
 import { SQLiteServiceService } from './../Services/sqlite-service.service';
 import { Storage } from '@ionic/storage';
@@ -36,7 +36,9 @@ export class WelcomePage implements OnInit {
     private storage: Storage,
     public toastCtrl: ToastController,
     public fb: FormBuilder,
-    private sqliteService : SQLiteServiceService
+    private sqliteService : SQLiteServiceService,
+    private platform: Platform,
+    private menu: MenuController
   ) { }
 
   ngOnInit() {
@@ -46,6 +48,13 @@ export class WelcomePage implements OnInit {
         passwordLogin: new FormControl('', Validators.compose([Validators.minLength(5), Validators.maxLength(10), Validators.required])),
       }
     )
+  }
+
+  ionViewDidEnter () {
+    this.menu.swipeGesture(false);
+  }
+  ionViewDidLeave () {
+    this.menu.swipeGesture(true);
   }
 
   
@@ -65,10 +74,13 @@ export class WelcomePage implements OnInit {
     this.slides.slidePrev();
   }
 
-  async prosesLogin() {//console.log(this.username);
-    this.authencticationService.login(this.username, this.password);
+  async prosesLogin() {console.log(this.Username.value, this.Password.value);
+    this.authencticationService.login(this.Username.value, this.Password.value);
     let body = { username: this.username, password: this.password } // edit out after
-    this.login(body)  // edit out
+    if(this.platform.is('cordova')) {
+       this.login(body)  // edit out
+    }
+   
   }
   login(body) {
     return this.sqliteService.loginUser(body).then( (localData: any) => {
@@ -119,8 +131,8 @@ export class WelcomePage implements OnInit {
         aksi: 'register'
       };
       alert(`user data on registration: ${body}`)
-      this.saveUser(body) // this should be down in the async function but it doesnt seem to fire
-      this.MySQLService.postData(body, 'proses-api.php').subscribe(async (data: object) => {
+      //this.saveUser(body) // this should be down in the async function but it doesnt seem to fire
+      this.MySQLService.postData(body).subscribe(async (data: object) => {
         var alertpesan = data['msg'];
         alert(`regOnlineData: ${JSON.stringify(data)}`)
         if (data['success']) {

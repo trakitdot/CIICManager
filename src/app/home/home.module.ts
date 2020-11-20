@@ -8,8 +8,8 @@ import { HomePageRoutingModule } from './home-routing.module';
 import { FootbarComponent } from '../Components/footbar/footbar.component';
 import { NavbarComponent } from '../Components/navbar/navbar.component';
 import { MainbarComponent } from '../Components/mainbar/mainbar.component';
-import { SidebarComponent } from '../Components/sidebar/sidebar.component';
-
+import { DynamicFormComponent } from '../Components/dynamic-form/dynamic-form.component';
+import { DynamicFormQuestionComponent } from '../Components/dynamic-form-question/dynamic-form-question.component';
 
 @NgModule({
   imports: [
@@ -19,8 +19,8 @@ import { SidebarComponent } from '../Components/sidebar/sidebar.component';
     HomePageRoutingModule,
     
   ],
-  declarations: [HomePage, FootbarComponent, NavbarComponent, MainbarComponent, SidebarComponent],
-  entryComponents: [FootbarComponent, NavbarComponent, MainbarComponent, SidebarComponent]
+  declarations: [HomePage, FootbarComponent, NavbarComponent, MainbarComponent, DynamicFormComponent, DynamicFormQuestionComponent],
+  entryComponents: [FootbarComponent, NavbarComponent, MainbarComponent, DynamicFormComponent, DynamicFormQuestionComponent]
   
 
   
