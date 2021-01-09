@@ -15,11 +15,13 @@ import { IonicStorageModule } from '@ionic/storage';
 import { SQLite } from '@ionic-native/sqlite/ngx'
 
 import { FormsModule } from '@angular/forms';
-import { AuthenticationService } from './Services/Auth/authentication.service';
-import { AuthGuardService } from './Services/Auth/auth-guard.service';
+// import { AuthenticationService } from './Services/Auth/authentication.service';
+// import { AuthGuardService } from './Services/Auth/auth-guard.service';
 import { MySQLServiceService } from './Services/my-sqlservice.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { QuestionService } from './Services/DynamicForm/question.service';
+import { AuthenticationService } from './Services/auth/authentication.service';
+import { AuthGuardService } from './Services/auth/auth-guard.service';
 
 @NgModule({
   declarations: [AppComponent ],

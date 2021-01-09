@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { AuthenticationService } from 'src/app/Services/Auth/authentication.service';
+import { AuthenticationService } from 'src/app/Services/auth/authentication.service';
+// import { AuthenticationService } from 'src/app/Services/Auth/authentication.service';
 
 @Component({
   selector: 'app-navbar',

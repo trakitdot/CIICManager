@@ -4,7 +4,8 @@ import { Platform, MenuController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Router } from '@angular/router';
-import { AuthenticationService } from './Services/Auth/authentication.service';
+import { AuthenticationService } from './Services/auth/authentication.service';
+// import { AuthenticationService } from './Services/Auth/authentication.service';
 
 
 @Component({
@@ -82,17 +83,17 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
      
-      this.authenticationService.authState.subscribe(state => {
-        this.state = state;
-        if (state) {
-          this.router.navigate(['home']);
-          console.log(state);
+      // this.authenticationService.authState.subscribe(state => {
+      //   this.state = state;
+      //   if (state) {
+      //     this.router.navigate(['home']);
+      //     console.log(state);
           
-        } else {
-          console.log(state);
-          this.router.navigate(['welcome']);
-        }
-      });
+      //   } else {
+      //     console.log(state);
+      //     this.router.navigate(['welcome']);
+      //   }
+      // });
     });
   }
 }

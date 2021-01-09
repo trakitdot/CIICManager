@@ -6,7 +6,8 @@ import { SQLiteServiceService } from './../Services/sqlite-service.service';
 import { Storage } from '@ionic/storage';
 
 import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
-import { AuthenticationService } from '../Services/Auth/authentication.service';
+import { AuthenticationService } from '../Services/auth/authentication.service';
+// import { AuthenticationService } from '../Services/Auth/authentication.service';
 @Component({
   selector: 'app-welcome',
   templateUrl: './welcome.page.html',
